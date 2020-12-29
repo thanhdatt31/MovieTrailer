@@ -1,6 +1,7 @@
 package com.example.movietrailer.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.movietrailer.DetailsActivity;
+import com.example.movietrailer.OnClickEvent;
 import com.example.movietrailer.R;
 import com.example.movietrailer.model.Genre;
+import com.example.movietrailer.model.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +23,11 @@ import java.util.List;
 public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> {
     private List<Genre> genreList = new ArrayList<>();
     private Context mContext;
+    private OnClickEvent clickEvent;
+
+    public void setClickEvent(OnClickEvent clickEvent) {
+        this.clickEvent = clickEvent;
+    }
 
     public GenreAdapter(Context mContext) {
         this.mContext = mContext;
@@ -41,6 +50,7 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false);
         holder.rcvMovie.setLayoutManager(linearLayoutManager);
         holder.rcvMovie.setAdapter(movieAdapter);
+        movieAdapter.setmMovieClickEvent(clickEvent);
 
     }
 

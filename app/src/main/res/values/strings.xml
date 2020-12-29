@@ -4,4 +4,8 @@
     <string name="action_favorites">Favorite</string>
     <string name="action_search">Search</string>
     <string name="action_users">Users</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="overview">Overview</string>
+    <string name="hello_blank_fragment">hello</string>
+    <string name="search_hint">Looking for something interesting ?</string>
 </resources>

@@ -1,10 +1,14 @@
 package com.example.movietrailer.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-
+@Entity(tableName = "movie")
 public class Movie  {
     @SerializedName("vote_average")
     @Expose
@@ -24,12 +28,14 @@ public class Movie  {
     @SerializedName("vote_count")
     @Expose
     private Integer voteCount;
-    @SerializedName("genre_ids")
-    @Expose
-    private List<Integer> genreIds = null;
+//    @SerializedName("genre_ids")
+//    @Expose
+//    private List<Integer> genreIds;
+    @PrimaryKey
     @SerializedName("id")
     @Expose
-    private Integer id;
+    @NonNull
+    private String id;
     @SerializedName("original_language")
     @Expose
     private String originalLanguage;
@@ -51,9 +57,15 @@ public class Movie  {
     @SerializedName("media_type")
     @Expose
     private String mediaType;
+    @SerializedName("runtime")
+    @Expose
+    private String runtime;
+    public String getRuntime() {
+        return runtime;
+    }
 
-    public Movie(String posterPath) {
-        this.posterPath = posterPath;
+    public void setRuntime(String runtime) {
+        this.runtime = runtime;
     }
 
     public Double getVoteAverage() {
@@ -104,19 +116,19 @@ public class Movie  {
         this.voteCount = voteCount;
     }
 
-    public List<Integer> getGenreIds() {
-        return genreIds;
-    }
+//    public List<Integer> getGenreIds() {
+//        return genreIds;
+//    }
+//
+//    public void setGenreIds(List<Integer> genreIds) {
+//        this.genreIds = genreIds;
+//    }
 
-    public void setGenreIds(List<Integer> genreIds) {
-        this.genreIds = genreIds;
-    }
-
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -176,5 +188,9 @@ public class Movie  {
         this.mediaType = mediaType;
     }
 
-
+    public Movie(@NonNull String id, String posterPath, String title) {
+        this.id = id;
+        this.posterPath = posterPath;
+        this.title = title;
+    }
 }
