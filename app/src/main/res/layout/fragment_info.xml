@@ -56,13 +56,21 @@
         app:layout_constraintTop_toBottomOf="@id/rating_bar"
         tools:ignore="RtlSymmetry" />
 
-    <Button
+    <!--    <Button-->
+    <!--        android:id="@+id/btn_favorite"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/tv_date"-->
+    <!--        app:layout_constraintLeft_toRightOf="@id/img_poster"-->
+    <!--        android:text="Like"/>-->
+
+    <com.github.ivbaranov.mfb.MaterialFavoriteButton
         android:id="@+id/btn_favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_date"
         app:layout_constraintLeft_toRightOf="@id/img_poster"
-        android:text="Like"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_date"
+        app:mfb_type="heart" />
 
     <TextView
         android:id="@+id/overview"

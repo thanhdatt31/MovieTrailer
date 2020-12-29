@@ -28,16 +28,15 @@ public class FavoriteFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_favorite, container, false);
         loadData();
         recyclerView = view.findViewById(R.id.recyclerview);
-        adapter = new FavoriteAdapter();
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(adapter);
        return view;
     }
 
     private void loadData() {
+        adapter = new FavoriteAdapter();
         List<Movie> mMovieList = MovieDatabase.getInstance(getContext()).movieDAO().getListMovie();
         adapter.setData(mMovieList);
     }
-
 
 }

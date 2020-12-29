@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import com.example.movietrailer.model.Movie;
 
 @Database(entities = {Movie.class}, version = 1)
-public abstract  class MovieDatabase extends RoomDatabase {
+public abstract class MovieDatabase extends RoomDatabase {
 
     private static final String DATABASE_NAME = "movie.db";
     private static MovieDatabase instance;

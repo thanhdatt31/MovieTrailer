@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +16,7 @@ import com.example.movietrailer.database.MovieDatabase;
 import com.example.movietrailer.model.Movie;
 import com.example.movietrailer.remote.APIService;
 import com.example.movietrailer.remote.RetrofitClient;
+import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class InfoFragment extends Fragment {
     private CircleImageView mCircleImageView;
     private TextView tv_title, tv_date, tv_rating, tv_runtime, tv_overview;
     private RatingBar ratingBar;
-    private Button btn_favorite;
+    private MaterialFavoriteButton btn_favorite;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,7 +56,6 @@ public class InfoFragment extends Fragment {
 
     private void loadDetails(String movie_id) {
         apiService.getDetailMovie(movie_id).enqueue(new Callback<Movie>() {
-
             @Override
             public void onResponse(Call<Movie> call, Response<Movie> response) {
                 Movie movie = response.body();
@@ -65,12 +64,18 @@ public class InfoFragment extends Fragment {
                         .into(mCircleImageView);
                 tv_title.setText(movie.getTitle());
                 Double ratingMovie = movie.getVoteAverage();
+                String runTime = movie.getRuntime() + " mins";
                 ratingBar.setRating((float) (ratingMovie / 2));
                 tv_rating.setText(String.valueOf(ratingMovie / 2));
                 tv_date.setText(movie.getReleaseDate());
-                tv_runtime.setText(movie.getRuntime() + " mins");
+                tv_runtime.setText(runTime);
                 tv_overview.setText(movie.getOverview());
-                btn_favorite.setOnClickListener(v -> addMovieToDB(movie));
+                if (checkMovieExists(movieToAdd(movie))) {
+                    btn_favorite.setEnabled(false);
+                    btn_favorite.setFavorite(true);
+                } else {
+                    btn_favorite.setOnClickListener(v -> addMovieToDB(movieToAdd(movie)));
+                }
             }
 
             @Override
@@ -80,20 +85,21 @@ public class InfoFragment extends Fragment {
         });
     }
 
-    private void addMovieToDB(Movie movie) {
+    private Movie movieToAdd(Movie movie) {
         String id = String.valueOf(movie.getId());
         String title = movie.getTitle();
         String posterPath = movie.getPosterPath();
-        Movie movieToAdd = new Movie(id, posterPath,title);
-        if (checkMovieExists(movieToAdd)){
-            Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        return new Movie(id, posterPath, title);
+    }
+
+    private void addMovieToDB(Movie movieToAdd) {
         MovieDatabase.getInstance(getContext()).movieDAO().insertMovie(movieToAdd);
+        btn_favorite.setEnabled(false);
+        btn_favorite.setFavorite(true);
         Toast.makeText(getContext(), "Added To Favorite", Toast.LENGTH_SHORT).show();
     }
 
-    private boolean checkMovieExists(Movie movie){
+    private boolean checkMovieExists(Movie movie) {
         List<Movie> list = MovieDatabase.getInstance(getContext()).movieDAO().checkMovieById(movie.getId());
         return list != null && !list.isEmpty();
     }

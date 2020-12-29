@@ -19,30 +19,27 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private BottomNavigationView mNavigationView;
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViewPager();
         mNavigationView = findViewById(R.id.bottom_nav);
-        mNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @SuppressLint("NonConstantResourceId")
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.action_home:
-                        mViewPager.setCurrentItem(0);
-                        break;
-                    case R.id.action_search:
-                        mViewPager.setCurrentItem(1);
-                        break;
-                    case R.id.action_favorite:
-                        mViewPager.setCurrentItem(2);
-                        break;
+        mNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.action_home:
+                    mViewPager.setCurrentItem(0);
+                    break;
+                case R.id.action_search:
+                    mViewPager.setCurrentItem(1);
+                    break;
+                case R.id.action_favorite:
+                    mViewPager.setCurrentItem(2);
+                    break;
 
-                }
-                return true;
             }
+            return true;
         });
     }
 

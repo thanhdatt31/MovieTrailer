@@ -34,23 +34,37 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation files('libs/YouTubeAndroidPlayerApi.jar')
     implementation 'androidx.cardview:cardview:1.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'androidx.core:core:1.5.0-alpha05'
+    //Glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'androidx.core:core:1.5.0-alpha05'
+
+
+    //ImageSlideshow
     implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
+
+    //Youtube player
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+
+    //Circle Image View
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    def room_version = "2.2.6"
 
-    implementation "androidx.room:room-runtime:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
+    //Room
+    implementation "androidx.room:room-runtime:2.2.6"
+    annotationProcessor "androidx.room:room-compiler:2.2.6"
 
+    //Favorite Button
+    implementation 'com.github.ivbaranov:materialfavoritebutton:0.1.5'
+
+    //Lottie
+    implementation 'com.airbnb.android:lottie:3.6.0'
 }
