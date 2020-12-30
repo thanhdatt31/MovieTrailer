@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -38,8 +37,8 @@ public class SimilarAdapter extends RecyclerView.Adapter<SimilarAdapter.ViewHold
         holder.img_movie_thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),DetailsActivity.class);
-                intent.putExtra("movie_id",String.valueOf(movie.getId()));
+                Intent intent = new Intent(v.getContext(), DetailsActivity.class);
+                intent.putExtra("movie_id", String.valueOf(movie.getId()));
                 v.getContext().startActivity(intent);
             }
         });

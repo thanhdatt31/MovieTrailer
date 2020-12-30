@@ -8,6 +8,8 @@
         android:id="@+id/img_poster"
         android:layout_width="80dp"
         android:layout_height="100dp"
+        android:paddingBottom="8dp"
+        android:paddingStart="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -15,13 +17,20 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingStart="6dp"
+        android:singleLine="false"
+        android:textColor="#FFF"
+        android:textSize="12sp"
         app:layout_constraintLeft_toRightOf="@id/img_poster"
+        app:layout_constraintRight_toLeftOf="@id/tv_date"
         app:layout_constraintTop_toTopOf="@id/img_poster" />
 
     <TextView
         android:id="@+id/tv_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#FFF"
+        android:textSize="12sp"
         app:layout_constraintLeft_toRightOf="@id/tv_title"
         app:layout_constraintTop_toTopOf="@id/tv_title" />
 
@@ -30,6 +39,7 @@
         style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingStart="6dp"
         app:layout_constraintLeft_toLeftOf="@id/tv_title"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
@@ -37,6 +47,9 @@
         android:id="@+id/tv_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#FFF"
+        android:textSize="12sp"
+        android:paddingStart="6dp"
         app:layout_constraintLeft_toRightOf="@id/ratingbar"
         app:layout_constraintTop_toTopOf="@id/ratingbar" />
 

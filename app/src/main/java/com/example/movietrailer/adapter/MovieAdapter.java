@@ -16,6 +16,7 @@ import com.example.movietrailer.DetailsActivity;
 import com.example.movietrailer.OnClickEvent;
 import com.example.movietrailer.R;
 import com.example.movietrailer.model.Movie;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,11 +72,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView img_movie_thumbnail;
+        RoundedImageView img_movie_thumbnail;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            img_movie_thumbnail = (ImageView) itemView.findViewById(R.id.img_movie_thumbnail);
+            img_movie_thumbnail = itemView.findViewById(R.id.img_movie_thumbnail);
 
         }
     }
