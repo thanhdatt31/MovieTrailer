@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".fragment.details.InfoFragment">
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:padding="6dp"
         android:id="@+id/img_poster"
         android:layout_width="120dp"
         android:layout_height="120dp"
@@ -15,36 +17,68 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:id="@+id/view_infor"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/view_bg"
+        app:layout_constraintBottom_toTopOf="@+id/guide_line1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/img_poster"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide_line1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="116dp" />
+
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
+        android:padding="4dp"
+        android:textColor="@color/black"
+        android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/img_poster"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/img_poster" />
+        app:layout_constraintLeft_toLeftOf="@id/view_infor"
+        app:layout_constraintRight_toRightOf="@id/view_infor"
+        app:layout_constraintTop_toTopOf="@id/view_infor" />
 
     <RatingBar
         android:id="@+id/rating_bar"
         style="?android:attr/ratingBarStyleSmall"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@id/img_poster"
+        android:paddingLeft="4dp"
+        app:layout_constraintLeft_toLeftOf="@id/tv_title"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
     <TextView
         android:id="@+id/tv_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         app:layout_constraintLeft_toRightOf="@id/rating_bar"
-        app:layout_constraintTop_toTopOf="@id/rating_bar" />
+        app:layout_constraintTop_toTopOf="@id/rating_bar"
+        android:paddingLeft="4dp"/>
 
     <TextView
         android:id="@+id/tv_runtime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@id/img_poster"
+        android:paddingLeft="4dp"
+        android:textColor="@color/black"
+        app:layout_constraintLeft_toLeftOf="@id/tv_title"
         app:layout_constraintTop_toBottomOf="@id/rating_bar" />
 
     <TextView
@@ -52,41 +86,58 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="6dp"
+        android:textColor="@color/black"
         app:layout_constraintLeft_toRightOf="@id/tv_runtime"
         app:layout_constraintTop_toBottomOf="@id/rating_bar"
-        tools:ignore="RtlSymmetry" />
-
-    <!--    <Button-->
-    <!--        android:id="@+id/btn_favorite"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/tv_date"-->
-    <!--        app:layout_constraintLeft_toRightOf="@id/img_poster"-->
-    <!--        android:text="Like"/>-->
+        tools:ignore="RtlSymmetry"/>
 
     <com.github.ivbaranov.mfb.MaterialFavoriteButton
         android:id="@+id/btn_favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@id/img_poster"
+        app:layout_constraintBottom_toBottomOf="@id/view_infor"
+        app:layout_constraintLeft_toLeftOf="@id/view_infor"
         app:layout_constraintTop_toBottomOf="@id/tv_date"
         app:mfb_type="heart" />
+
+    <View
+        android:id="@+id/view_overview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/view_bg"
+        app:layout_constraintBottom_toBottomOf="@id/tv_desc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guide_line1"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/overview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
         android:text="@string/overview"
+        android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/img_poster" />
+        app:layout_constraintLeft_toLeftOf="@id/view_overview"
+        app:layout_constraintTop_toTopOf="@+id/view_overview" />
 
     <TextView
         android:id="@+id/tv_desc"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/overview" />
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:paddingBottom="4dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/view_overview"
+        app:layout_constraintEnd_toEndOf="@+id/view_overview"
+        app:layout_constraintStart_toStartOf="@+id/view_overview"
+        app:layout_constraintTop_toBottomOf="@+id/overview" />
 </androidx.constraintlayout.widget.ConstraintLayout>

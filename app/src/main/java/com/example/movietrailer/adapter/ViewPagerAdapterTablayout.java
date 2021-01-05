@@ -19,51 +19,47 @@ import java.util.List;
 public class ViewPagerAdapterTablayout extends FragmentStatePagerAdapter {
 //    private final List<Fragment> mFragmentList = new ArrayList<>();
     private final Bundle bundle;
+    // code nhu nay la hong roi
+    private List<Fragment> mFragmentList = new ArrayList<>();
     public ViewPagerAdapterTablayout(@NonNull FragmentManager fm, int behavior, Bundle bundle) {
         super(fm, behavior);
         this.bundle = bundle;
+
+        InfoFragment  fragment = new InfoFragment();
+        fragment.setArguments(bundle);
+
+        SimilarFragment  fragment2 = new SimilarFragment();
+        fragment2.setArguments(bundle);
+
+        CastFragment  fragment3 = new CastFragment();
+        fragment3.setArguments(bundle);
+
+
+        mFragmentList.add(fragment);
+        mFragmentList.add(fragment2);
+        mFragmentList.add(fragment3);
+
+
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment = null;
-        switch (position) {
-            case 0:
-                fragment = new InfoFragment();
-                fragment.setArguments(bundle);
-                break;
-            case 1:
-                fragment = new SimilarFragment();
-                fragment.setArguments(bundle);
-                break;
-            case 2:
-                fragment =  new CastFragment();
-                fragment.setArguments(bundle);
-                break;
-            case 3:
-                fragment = new ProducerFragment();
-                fragment.setArguments(bundle);
-                break;
-            default:
-                fragment = new InfoFragment();
-                break;
-        }
-        return fragment;
+        return mFragmentList.get(position);
     }
 
     @Override
     public int getCount() {
-        return 4;
+        return 3;
     }
 
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        String title = "";
+        String title ="";
         switch (position) {
             case 0:
-                title = "INFORMATION";
+                title = "DETAIL";
                 break;
             case 1:
                 title = "SIMILAR";
@@ -71,10 +67,11 @@ public class ViewPagerAdapterTablayout extends FragmentStatePagerAdapter {
             case 2:
                 title = "CAST";
                 break;
-            case 3:
-                title = "PRODUCER";
-                break;
         }
         return title;
+    }
+
+    public InfoFragment getInfoFragment() {
+        return (InfoFragment) mFragmentList.get(0);
     }
 }

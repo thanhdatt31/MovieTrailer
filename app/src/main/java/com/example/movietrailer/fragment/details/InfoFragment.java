@@ -1,5 +1,6 @@
 package com.example.movietrailer.fragment.details;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.app.Activity.RESULT_OK;
 
 
 public class InfoFragment extends Fragment {
@@ -71,11 +74,14 @@ public class InfoFragment extends Fragment {
                 tv_runtime.setText(runTime);
                 tv_overview.setText(movie.getOverview());
                 if (checkMovieExists(movieToAdd(movie))) {
-                    btn_favorite.setEnabled(false);
                     btn_favorite.setFavorite(true);
+                    btn_favorite.setOnFavoriteChangeListener((buttonView, favorite) -> {
+                        deleteMovie(movieToAdd(movie));
+                    });
                 } else {
                     btn_favorite.setOnClickListener(v -> addMovieToDB(movieToAdd(movie)));
                 }
+
             }
 
             @Override
@@ -94,7 +100,6 @@ public class InfoFragment extends Fragment {
 
     private void addMovieToDB(Movie movieToAdd) {
         MovieDatabase.getInstance(getContext()).movieDAO().insertMovie(movieToAdd);
-        btn_favorite.setEnabled(false);
         btn_favorite.setFavorite(true);
         Toast.makeText(getContext(), "Added To Favorite", Toast.LENGTH_SHORT).show();
     }
@@ -102,5 +107,27 @@ public class InfoFragment extends Fragment {
     private boolean checkMovieExists(Movie movie) {
         List<Movie> list = MovieDatabase.getInstance(getContext()).movieDAO().checkMovieById(movie.getId());
         return list != null && !list.isEmpty();
+    }
+
+    private void deleteMovie(Movie movie) {
+        MovieDatabase.getInstance(getContext()).movieDAO().deleteMovie(movie);
+        Toast.makeText(getContext(), "Deleted", Toast.LENGTH_SHORT).show();
+        if (clickEvent!=null){
+            clickEvent.onDeleteMovie();
+
+        }
+
+
+    }
+
+
+    private OnClickEvent clickEvent;
+
+    public void setClickEvent(OnClickEvent clickEvent) {
+        this.clickEvent = clickEvent;
+    }
+
+    public interface OnClickEvent{
+        void onDeleteMovie();
     }
 }

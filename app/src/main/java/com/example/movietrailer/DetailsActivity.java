@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.movietrailer.adapter.ViewPagerAdapterTablayout;
 import com.example.movietrailer.fragment.YoutubeFragment;
+import com.example.movietrailer.fragment.details.InfoFragment;
 import com.example.movietrailer.model.VideoTrailer;
 import com.example.movietrailer.model.VideoTrailerResponse;
 import com.example.movietrailer.remote.APIService;
@@ -51,6 +52,14 @@ public class DetailsActivity extends AppCompatActivity {
         ViewPagerAdapterTablayout viewpagerAdapter = new ViewPagerAdapterTablayout(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, bundle);
         mViewPager.setAdapter(viewpagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
+
+        viewpagerAdapter.getInfoFragment().setClickEvent(new InfoFragment.OnClickEvent() {
+            @Override
+            public void onDeleteMovie() {
+                Intent intent = new Intent();
+                setResult(RESULT_OK, intent);
+            }
+        });
 
     }
 

@@ -15,10 +15,11 @@ import com.example.movietrailer.DetailsActivity;
 import com.example.movietrailer.R;
 import com.example.movietrailer.model.Movie;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHolder> {
-    List<Movie> mMovieList;
+    List<Movie> mMovieList = new ArrayList<>();
 
     @NonNull
     @Override
@@ -37,9 +38,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), DetailsActivity.class);
-                intent.putExtra("movie_id",String.valueOf(movie.getId()));
-                v.getContext().startActivity(intent);
+             if (clickEvent!=null){
+                 clickEvent.onClickItem(movie);
+             }
             }
         });
     }
@@ -62,7 +63,19 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
     }
 
     public void setData(List<Movie> listData){
-        this.mMovieList = listData;
+        this.mMovieList.clear();
+        this.mMovieList.addAll(listData);
         notifyDataSetChanged();
+    }
+
+
+    private OnClickEvent clickEvent;
+
+    public void setClickEvent(OnClickEvent clickEvent) {
+        this.clickEvent = clickEvent;
+    }
+
+    public interface OnClickEvent{
+        void onClickItem(Movie movie);
     }
 }

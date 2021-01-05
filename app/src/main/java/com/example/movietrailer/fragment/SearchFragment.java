@@ -21,6 +21,7 @@ import com.example.movietrailer.model.Movie;
 import com.example.movietrailer.model.MovieResponse;
 import com.example.movietrailer.remote.APIService;
 import com.example.movietrailer.remote.RetrofitClient;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
 import java.util.Objects;
@@ -33,6 +34,7 @@ import retrofit2.Response;
 public class SearchFragment extends Fragment {
     private RecyclerView recyclerView;
     private SearchAdapter adapter;
+    private TextInputEditText edt_search;
     private final APIService apiService = RetrofitClient
             .getClient()
             .create(APIService.class);
@@ -41,7 +43,7 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
-        EditText edt_search = view.findViewById(R.id.edt_search);
+        edt_search = (TextInputEditText) view.findViewById(R.id.edt_search);
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new SearchAdapter();

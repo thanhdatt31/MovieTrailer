@@ -17,6 +17,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 
 public class YoutubeFragment extends Fragment {
     YouTubePlayerView youTubePlayerView;
+        ////  tu refrsh o man nao
 
 
     @Override
@@ -35,7 +36,7 @@ public class YoutubeFragment extends Fragment {
         }
         return view;
     }
-
+    // bấm vào bỏ thích thì xử lý ở đâu
     @Override
     public void onDestroy() {
         super.onDestroy();
